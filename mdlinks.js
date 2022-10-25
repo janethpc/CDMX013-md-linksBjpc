@@ -7,7 +7,7 @@ const { exit } = require('process')
 //Si es una ruta relativa convertir en absoluta
 const resolvePath = (route) => {
   const pathAbsolute = path.resolve(route)
-  console.log(`${pathAbsolute}`)
+  return pathAbsolute
 }
 // ¿La ruta existe?
 const validPath = (route) => {
@@ -56,9 +56,7 @@ if (path.extname(route) !== '.md') {
 
 
 
-module.exports.resolvePath = resolvePath;
-module.exports.validPath = validPath;
-module.exports.pathType = pathType;
-module.exports.fileExtension = fileExtension;
-module.exports.texto = texto;
+module.exports = {
+  resolvePath
+}
 

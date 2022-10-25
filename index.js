@@ -1,15 +1,11 @@
+const { argv } = require('node:process');
+const {resolvePath} = require('./mdlinks.js');
+
 const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
 })
-const mdLinks = require('./mdLinks')
+
+console.log(resolvePath(argv[2]));
 
 
-
-readline.question((`Ingresa una ruta:`), (route) => {
-mdLinks.resolvePath(route)
-mdLinks.validPath(route)
-mdLinks.pathType(route)
-mdLinks.texto(route)
- //exit()
-})
