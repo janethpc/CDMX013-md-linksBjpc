@@ -1,11 +1,24 @@
 const { argv } = require('node:process');
-const {resolvePath} = require('./mdlinks.js');
+const chalk = require('chalk');
+const {fs} = require('fs');
+const { resolvePath, mdFiles, openfile} = require('./mdlinks.js');
 
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
+const nameFile = argv[2];
 
-console.log(resolvePath(argv[2]));
 
+const routeFile = (resolvePath(nameFile));
+console.log(routeFile);
+
+const extension = (mdFiles(nameFile));
+if(extension == '.md'){
+    console.log(openfile(nameFile));
+};
+
+
+
+
+
+
+
+ 
 
