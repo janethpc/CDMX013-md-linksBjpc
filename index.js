@@ -1,11 +1,9 @@
 const { argv } = require('node:process');
 const chalk = require('chalk');
 const {fs} = require('fs');
-const { resolvePath, mdFiles, openfile} = require('./mdlinks.js');
+const { resolvePath, mdFiles, openfile} = require('./funciones.js');
 
 const nameFile = argv[2];
-
-
 const routeFile = (resolvePath(nameFile));
 console.log(routeFile);
 
