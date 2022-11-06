@@ -1,16 +1,24 @@
 const { argv } = require('node:process');
 const chalk = require('chalk');
 const {fs} = require('fs');
-const { resolvePath, mdFiles, openfile} = require('./funciones.js');
+const EventEmitter = require ('events');
+const { resolvePath, openfile} = require('./funciones.js');
 
 const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
-console.log(routeFile);
+console.log(chalk.red(routeFile));
 
-const extension = (mdFiles(nameFile));
-if(extension == '.md'){
-    console.log(openfile(nameFile));
-};
+//const extension = (mdFiles(nameFile));
+//if(extension == '.md'){
+  //  console.log(openfile(nameFile));
+//};
+
+/*const emisorEventos = new EventEmitter(); //definiendo 
+emisorEventos.on('validate', () => { //escuchando
+    console.log(chalk.red(`total links:`, openfile(nameFile)));
+});
+
+ emisorEventos.emit('validate'); //emitiendo */
 
 
 
