@@ -5,6 +5,7 @@ const path = require('path')
 
 
 
+
 //Si es una ruta relativa convertir en absoluta
 const resolvePath = (route) => {
   const pathAbsolute = path.resolve(route)
@@ -43,9 +44,7 @@ const openfile = (routeFile) => {
   return result;
 };
 
-//VALIDAR LINK AXIOX
-objetFile = obj.href;
-console.log(objetFile);
+
 
  
 

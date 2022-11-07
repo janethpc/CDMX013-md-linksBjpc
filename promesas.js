@@ -1,6 +1,7 @@
 const { argv } = require('node:process');
 const chalk = require('chalk');
 const fs = require('fs');
+const axios = require ('axios');
 const { resolvePath, mdFiles, openfile} = require('./funciones.js');
 
 const nameFile = argv[2];
@@ -9,8 +10,12 @@ console.log(routeFile);
 const extension = (mdFiles(nameFile)); 
 const leerFile = openfile(nameFile);
 
+const getlinks = leerFile.map((obj) =>{
+    const links = obj.href;
+    return links
+})
 
-const validandoExtension = new Promise((resolve, reject) => {
+/*const validandoExtension = new Promise((resolve, reject) => {
     setTimeout(() => {
         if (extension){
             resolve(chalk.bgRed.bold(`Se encontraron`));
@@ -18,7 +23,16 @@ const validandoExtension = new Promise((resolve, reject) => {
             reject('tu archivo no es MD');
         }
     }, 3000);
-});
+});*/
+
+const validandoLinks = (link) => {
+    let request = axios.get(link);
+    let object = request.then((response) => {
+        return response.status
+    })
+    return object
+}
+
 
 //const miArchivoesMd = (valor) => { //manejar promesa cumplida
   //  console.log(valor, leerFile);
@@ -28,11 +42,14 @@ const validandoExtension = new Promise((resolve, reject) => {
 //};
 //validandoExtension.then(miArchivoesMd, miArchivonoesMd);}
 
-validandoExtension
+/*validandoExtension
     .then((mensajeDeConfirmacion) => {
-        console.log(mensajeDeConfirmacion, leerFile);
+        console.log(mensajeDeConfirmacion, getlinks)
     })
-    .then(null, (mensajeDeError) => {
+    .catch((mensajeDeError) => {
         console.log(mensajeDeError);
-    });
+    });*/
+
+validandoLinks('https://user-images.githubusercontent.com/108207854/199856664-9fc6927a-50cb-4687-9584-979e53db54d8.png').then(console.log)
+
 
