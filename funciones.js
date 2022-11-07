@@ -1,7 +1,7 @@
 const fs = require('fs')
-const { Http2ServerRequest } = require('http2')
+const chalk = require('chalk');
 const path = require('path')
-const { exit } = require('process')
+
 
 
 
@@ -16,7 +16,7 @@ const mdFiles = file => {
     if (mdFile == '.md') {
       return mdFile
     }else{
-      console.log('tu archivo no es .md')
+      console.log(chalk.red('tu archivo no es .md'))
     }
   };
 
@@ -42,6 +42,10 @@ const openfile = (routeFile) => {
   });
   return result;
 };
+
+//VALIDAR LINK AXIOX
+objetFile = obj.href;
+console.log(objetFile);
 
  
 

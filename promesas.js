@@ -15,7 +15,7 @@ const validandoExtension = new Promise((resolve, reject) => {
         if (extension){
             resolve(chalk.bgRed.bold(`Se encontraron`));
         }else{
-            reject(chalk.red('tu archivo no es MD'));
+            reject('tu archivo no es MD');
         }
     }, 3000);
 });
@@ -30,8 +30,9 @@ const validandoExtension = new Promise((resolve, reject) => {
 
 validandoExtension
     .then((mensajeDeConfirmacion) => {
-        console.log(mensajeDeConfirmacion);
+        console.log(mensajeDeConfirmacion, leerFile);
     })
     .then(null, (mensajeDeError) => {
         console.log(mensajeDeError);
     });
+

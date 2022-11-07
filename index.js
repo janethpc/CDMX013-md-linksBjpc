@@ -7,18 +7,18 @@ const { resolvePath, openfile} = require('./funciones.js');
 const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
 console.log(chalk.red(routeFile));
-
+const openFileAll = (openfile(nameFile));
 //const extension = (mdFiles(nameFile));
 //if(extension == '.md'){
   //  console.log(openfile(nameFile));
 //};
 
-/*const emisorEventos = new EventEmitter(); //definiendo 
+const emisorEventos = new EventEmitter(); //definiendo 
 emisorEventos.on('validate', () => { //escuchando
-    console.log(chalk.red(`total links:`, openfile(nameFile)));
+    console.log(chalk.red(`total links:`, openFileAll));
 });
 
- emisorEventos.emit('validate'); //emitiendo */
+ emisorEventos.emit('validate'); //emitiendo
 
 
 
