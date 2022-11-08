@@ -1,6 +1,5 @@
 const { argv } = require('node:process');
 const chalk = require('chalk');
-const fs = require('fs');
 const axios = require ('axios');
 const { resolvePath, mdFiles, getLinks} = require('./funciones.js');
 
@@ -8,6 +7,33 @@ const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
 const extension = (mdFiles(routeFile)); 
 const links = getLinks(routeFile);
+
+const validandoLinks = (link) => {
+    let request = axios.get(link);
+    let object = request.then((response) => {
+        //console.log(response)
+        return {status:response.status, text: response.statusText}
+    })
+    return object
+    .catch((error) => {
+        //console.log(error)
+        return {status: error.status} //me imprime undefined ¿?
+    })
+}
+
+const objlink = links.map((obj) =>{
+    const Onelink = obj.href;
+    return Onelink
+});
+
+Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
+  console.log(resultado);
+})
+
+
+
+
+
 
 
 
@@ -20,29 +46,6 @@ const links = getLinks(routeFile);
         }
     }, 1000);
 });*/
-
-const validandoLinks = (link) => {
-    let request = axios.get(link);
-    let object = request.then((response) => {
-        //console.log(response)
-        return {status:response.status, text: response.statusText}
-    })
-    return object
-}
-
-const objlink = links.map((obj) =>{
-    const Onelink = obj.href;
-    return Onelink
-})
-const prueba = objlink;
-validandoLinks(prueba[0]).then(console.log)
-
-
-
-
-//Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
- //  console.log('hola')
-//})
 
 //const miArchivoesMd = (valor) => { //manejar promesa cumplida
   //  console.log(valor, leerFile);
