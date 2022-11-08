@@ -24,7 +24,7 @@ const mdFiles = file => {
   let cleanHref = {};
   let cleanText = {};
 
-const openfile = (routeFile) => {
+const getLinks = (routeFile) => {
   const files = fs.readFileSync(routeFile, 'utf-8').match(/\[(.+)\]\((https?:\/\/.+)\)/gi);
   let result = files.map((link) => {
 
@@ -51,6 +51,6 @@ const openfile = (routeFile) => {
 module.exports = {
   resolvePath,
   mdFiles,
-  openfile
+  getLinks
 }
 

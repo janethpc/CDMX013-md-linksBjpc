@@ -2,18 +2,14 @@ const { argv } = require('node:process');
 const chalk = require('chalk');
 const fs = require('fs');
 const axios = require ('axios');
-const { resolvePath, mdFiles, openfile} = require('./funciones.js');
+const { resolvePath, mdFiles, getLinks} = require('./funciones.js');
 
 const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
-console.log(routeFile);
-const extension = (mdFiles(nameFile)); 
-const leerFile = openfile(nameFile);
+const extension = (mdFiles(routeFile)); 
+const links = getLinks(routeFile);
 
-const getlinks = leerFile.map((obj) =>{
-    const links = obj.href;
-    return links
-})
+
 
 /*const validandoExtension = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -22,17 +18,31 @@ const getlinks = leerFile.map((obj) =>{
         }else{
             reject('tu archivo no es MD');
         }
-    }, 3000);
+    }, 1000);
 });*/
 
 const validandoLinks = (link) => {
     let request = axios.get(link);
     let object = request.then((response) => {
-        return response.status
+        //console.log(response)
+        return {status:response.status, text: response.statusText}
     })
     return object
 }
 
+const objlink = links.map((obj) =>{
+    const Onelink = obj.href;
+    return Onelink
+})
+const prueba = objlink;
+validandoLinks(prueba[0]).then(console.log)
+
+
+
+
+//Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
+ //  console.log('hola')
+//})
 
 //const miArchivoesMd = (valor) => { //manejar promesa cumplida
   //  console.log(valor, leerFile);
@@ -44,12 +54,10 @@ const validandoLinks = (link) => {
 
 /*validandoExtension
     .then((mensajeDeConfirmacion) => {
-        console.log(mensajeDeConfirmacion, getlinks)
+        console.log(mensajeDeConfirmacion, links)
     })
     .catch((mensajeDeError) => {
         console.log(mensajeDeError);
-    });*/
-
-validandoLinks('https://user-images.githubusercontent.com/108207854/199856664-9fc6927a-50cb-4687-9584-979e53db54d8.png').then(console.log)
-
+    });
+*/
 
