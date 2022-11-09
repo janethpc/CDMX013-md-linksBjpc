@@ -6,6 +6,7 @@ const { resolvePath, mdFiles, getLinks} = require('./funciones.js');
 
 const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
+console.log(chalk.bgBlueBright.bold('la ruta de tu archivo es:'));
 console.log(chalk.bgRed.bold(routeFile))
 const extension = (mdFiles(routeFile)); 
 const links = getLinks(routeFile);
@@ -17,7 +18,7 @@ const objlink = links.map((obj) =>{ //obtengo del objeto unicamente los links
 
 const emisorEventos = new EventEmitter(); //definiendo 
 emisorEventos.on('validate', () => { //escuchando
-    console.log(chalk.red(`total links:`));
+    console.log(chalk.bgMagentaBright.bold(`tu archivo contiene los sig. links:`));
 });
 
  emisorEventos.emit('validate'); //emitiendo
@@ -28,22 +29,22 @@ emisorEventos.on('validate', () => { //escuchando
            // console.log(response)
            return {ok:'TU LINK FUNCIONA', href: link, status:response.status, text: response.statusText}
         })
-        return object
         .catch(({response}) => {
            return {ohNo:'No podras consultar este link', href: link, status:response.status, text:response.statusText} //me imprime undefined ¿?
         })
+        return object
     }
-
-  const objetdeaxios = Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
-      console.log(resultado);
+    
+  const objeto = Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
+     console.log((resultado));
      });
 
 
-
+//console.log(chalk.bgRed.bold(objetdeaxios));
 /*const validandoExtension = new Promise((resolve, reject) => {
     setTimeout(() => {
         if (extension){
-            resolve(chalk.bgRed.bold(`Se encontraron`));
+            resolve(chalk.bgMagentaBright.bold(`Se encontraron`));
         }else{
             reject('tu archivo no es MD');
         }
