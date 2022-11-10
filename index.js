@@ -1,30 +1,34 @@
+const { rejects } = require('node:assert');
 const { argv } = require('node:process');
-const chalk = require('chalk');
-const {fs} = require('fs');
-const EventEmitter = require ('events');
-const { resolvePath, openfile} = require('./funciones.js');
+const {resolvePath, mdFiles} = require ('./funciones');
+const {getLinks} = require ('./components/getLinks');
+const { validandoLinks } = require('./components/validateLinks');
+
 
 const nameFile = argv[2];
-const routeFile = (resolvePath(nameFile));
-console.log(chalk.red(routeFile));
-const openFileAll = (openfile(nameFile));
-//const extension = (mdFiles(nameFile));
-//if(extension == '.md'){
-  //  console.log(openfile(nameFile));
-//};
-
-const emisorEventos = new EventEmitter(); //definiendo 
-emisorEventos.on('validate', () => { //escuchando
-    console.log(chalk.red(`total links:`, openFileAll));
-});
-
- emisorEventos.emit('validate'); //emitiendo
 
 
+const mdLinks = (givenPath, options) => {
+  
+  const pathFile = resolvePath(nameFile);
+  const extension = mdFiles(pathFile)
+  const links = getLinks(pathFile)
+  const objlink = links.map((obj) =>{ //obtengo del objeto unicamente los links
+    const Onelink = obj.href;
+    return Onelink
+  });
 
+  return new Promise((resolve, reject) =>{
+    if(extension === ',md'){
+      if(options.validate === true && options.stats === false){
 
+        let array = objlink.map(element => validandoLinks(element));
+        let allRequests = Promise.all(array)
+        resolve(allRequests)
+      }
+    }
+  })
 
+}
 
-
- 
-
+module.exports = {mdLinks}

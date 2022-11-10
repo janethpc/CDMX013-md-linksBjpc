@@ -1,8 +1,9 @@
 const { argv } = require('node:process');
 const chalk = require('chalk');
-const axios = require ('axios');
+const {validandoLinks} = require('./components/validateLinks');
 const EventEmitter = require ('events');
-const { resolvePath, mdFiles, getLinks} = require('./funciones.js');
+const {getLinks} = require('./components/getLinks')
+const { resolvePath, mdFiles} = require('./funciones.js');
 
 const nameFile = argv[2];
 const routeFile = (resolvePath(nameFile));
@@ -23,19 +24,9 @@ emisorEventos.on('validate', () => { //escuchando
 
  emisorEventos.emit('validate'); //emitiendo
 
-    const validandoLinks = (link) => {
-        let request = axios.get(link);
-        let object = request.then((response) => {
-           // console.log(response)
-           return {ok:'TU LINK FUNCIONA', href: link, status:response.status, text: response.statusText}
-        })
-        .catch(({response}) => {
-           return {ohNo:'No podras consultar este link', href: link, status:response.status, text:response.statusText} //me imprime undefined ¿?
-        })
-        return object
-    }
+   
     
-  const objeto = Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
+  Promise.all(objlink.map(validandoLinks)).then((resultado)=>{
      console.log((resultado));
      });
 
