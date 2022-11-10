@@ -12,22 +12,22 @@ mdLinks(nameFile, options)
 .then((res) => {
     if(options.validate === false && options.stats === false){
         res.forEach(element => {
-            console.log(nameFile, element.href, element.text)
+            console.log({link: element.href, text: element.text})
         });
         console.log('otros comandos: --validate / -- stats / --validate --stats')
     }else if (options.validate === false && options.stats === true){
         let array = res.repeatedLinks;
-        console.log(res.total, res.unique, res.repeated);
+        console.log({total:res.total, unicos:res.unique, repetidos:res.repeated});
         array.forEach(e => {
-            console.log(e.href)
+            console.log(chalk.bgBlueBright.bold(e.href));
         })
     }else if(options.validate === true && options.stats === false){
         res.forEach(element => {
-            console.log(element.menss, element.href, element.status, element.text)
+            console.log({mensaje:element.menss, link:element.href, status:element.status, texto:element.text})
         })
     }else if(options.validate === true && options.stats === true){
         let array = res.brokenLinksArray;
-        console.log(res.total, res.unique, res.broken)
+        console.log({total:res.total, unicos: res.unique, rotos:res.broken})
         array.forEach(e => {
             console.log(chalk.bgBlueBright.bold(e.href));
         })
@@ -35,6 +35,6 @@ mdLinks(nameFile, options)
 })
 .catch((err) => console.log(`
    
-                                ${chalk.bgRed(' ERROR: ')} ${chalk.white.bold(err)} 
+       ${chalk.bgRed(' ERROR: ')} ${chalk.white.bold(err)} 
    
  `))
