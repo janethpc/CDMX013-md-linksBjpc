@@ -1,9 +1,9 @@
-//#!/usr/bin/env node
+#!/usr/bin/env node
 const process = require('node:process');
 const { argv } = require('node:process');
 const {mdLinks} = require ('./index');
-const [,, ...args] = process.argv;
 const chalk = require ('chalk');
+const [,, ...args] = process.argv;
 
 const nameFile = argv[2];
 const options = {validate: [,, ...args].includes('--validate'), stats: [,, ...args].includes('--stats')}
@@ -37,4 +37,4 @@ mdLinks(nameFile, options)
    
        ${chalk.bgRed(' ERROR: ')} ${chalk.white.bold(err)} 
    
- `))
+ `));

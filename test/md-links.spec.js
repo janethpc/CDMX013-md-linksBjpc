@@ -1,10 +1,9 @@
-const mdLinks = require('../');
+const {resolvePath} = require ('../funciones');
 
 
-describe('mdLinks', () => {
 
-  it('should...', () => {
-    console.log('FIX ME!');
-  });
+describe('test ruta absoluta', () => {
+  TextDecoderStream('')
+  
 
 });

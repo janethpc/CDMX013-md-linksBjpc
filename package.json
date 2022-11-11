@@ -7,5 +7,29 @@
   "dependencies": {
     "axios": "^1.1.3",
     "chalk": "^4.1.2"
-  }
+  },
+  "description": "modulo que te permitira validar los enlaces encontrados en tu archivo .md",
+  "main": "cli.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janethpc/CDMX013-md-linksBjpc.git"
+  },
+  "author": "Bertha Janeth Pérez",
+  "license": "ISC",
+  "bin": {
+    "md-links": "./cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/janethpc/CDMX013-md-linksBjpc/issues"
+  },
+  "homepage": "https://github.com/janethpc/CDMX013-md-linksBjpc#readme"
 }
