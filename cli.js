@@ -10,9 +10,9 @@ const options = {validate: [,, ...args].includes('--validate'), stats: [,, ...ar
 
 mdLinks(nameFile, options)
 .then((res) => {
-    if(options.validate === false && options.stats === false){
+    if(options.validate === false && options.stats === false){ //flujo condicional (instruccion if(si algo es verdad, haz esto))
         res.forEach(element => {
-            console.log({link: element.href, text: element.text})
+            console.log({link: element.href, text: element.text})  //los flujos requiren la condicion y una sentencia
         });
         console.log('otros comandos: --validate / -- stats / --validate --stats')
     }else if (options.validate === false && options.stats === true){

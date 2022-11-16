@@ -19,7 +19,7 @@ const mdLinks = (givenPath, options) => {
     if(extension === '.md'){
       if(options.validate === true && options.stats === false){
 
-        let array = objlink.map(element => validandoLinks(element));
+        let array = objlink.map(element => validandoLinks(element)); //funsion pasada como argumento 
         let allRequests = Promise.all(array);
         resolve(allRequests);
 

@@ -17,7 +17,8 @@ const objlink = links.map((obj) =>{ //obtengo del objeto unicamente los links
     return Onelink
 });
 
-const emisorEventos = new EventEmitter(); //definiendo 
+const emisorEventos = new EventEmitter(); //definiendo
+ 
 emisorEventos.on('validate', () => { //escuchando
     console.log(chalk.bgMagentaBright.bold(`tu archivo contiene los sig. links:`));
 });
